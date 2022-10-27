@@ -1,3 +1,8 @@
+require('dotenv').config()
+const HDWalletProvider = require("@truffle/hdwallet-provider")
+
+
+
 /**
  * Use this file to configure your truffle project. It's seeded with some
  * common settings for different networks and features like migrations,
@@ -70,6 +75,18 @@ module.exports = {
     //  network_id: "*",       // Any network (default: none)
     // },
     //
+    rinkeby:{
+      provider: () => new HDWalletProvider({
+        privateKeys: [process.env.PRIVATE_KEY_1],
+        providerOrUrl: '',
+        numberOfAddresses: 1
+      }),
+      network_id: 4,
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    },
     // An additional network, but with some advanced options…
     // advanced: {
     //   port: 8777,             // Custom port
